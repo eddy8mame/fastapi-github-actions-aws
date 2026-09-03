@@ -10,8 +10,14 @@ echo "Checking if AWS IAM ${OIDC_ROLE_NAME} role exists..."
 if aws iam get-role --role-name "$OIDC_ROLE_NAME" >/dev/null; then
   echo "${OIDC_ROLE_NAME} role exists."
 else
-  echo "aws iam get-role failed — see error above. Creating ${OIDC_ROLE_NAME} role and permissions policy..."
+  echo "aws iam get-role failed — see error above. Creating ${OIDC_ROLE_NAME} role..."
   "$SCRIPT_DIR/create-oidc-role.sh"
+fi
+
+echo "Checking if ${OIDC_ROLE_POLICY_NAME} policy is attached to ${OIDC_ROLE_NAME} role..."
+if aws iam get-role-policy --role-name "$OIDC_ROLE_NAME" --policy-name "$OIDC_ROLE_POLICY_NAME" >/dev/null; then
+  echo "Policy is attached."
+else
+  echo "aws iam get-role-policy failed — see error above. Attaching ${OIDC_ROLE_POLICY_NAME} policy..."
   "$SCRIPT_DIR/attach-oidc-role-permissions-policy.sh"
 fi
-echo "Successfully created or verified ${OIDC_ROLE_NAME} role and attached permissions policy."
