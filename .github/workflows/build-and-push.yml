@@ -12,7 +12,7 @@ env:
   AWS_REGION: ${{ vars.AWS_REGION }}
   ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
   IMAGE_TAG: ${{ github.sha }}
-  GITHUB_REPO: ${{ vars.GITHUB_REPO }}
+  REPO_NAME: ${{ vars.REPO_NAME }}
 
 jobs:
   build-and-push:
@@ -41,7 +41,7 @@ jobs:
       - name: Write image tag to SSM
         run: |
           aws ssm put-parameter \
-            --name "/nextera/${{ env.GITHUB_REPO }}/image-tag" \
+            --name "/nextera/${{ env.REPO_NAME }}/image-tag" \
             --value "$IMAGE_TAG" \
             --type String \
             --overwrite
