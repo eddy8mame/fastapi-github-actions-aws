@@ -10,7 +10,7 @@ permissions:
 env:
   AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
   AWS_REGION: ${{ vars.AWS_REGION }}
-  ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+  ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
   IMAGE_TAG: ${{ github.sha }}
   GITHUB_REPO: ${{ vars.GITHUB_REPO }}
 
@@ -40,8 +40,8 @@ jobs:
 
       - name: Write image tag to SSM
         run: |
-        aws ssm put-parameter \
-          --name "/nextera/${{ env.PROJECT_NAME }}/image-tag" \
-          --value "$IMAGE_TAG" \
-          --type String \
-          --overwrite
+          aws ssm put-parameter \
+            --name "/nextera/${{ env.GITHUB_REPO }}/image-tag" \
+            --value "$IMAGE_TAG" \
+            --type String \
+            --overwrite
