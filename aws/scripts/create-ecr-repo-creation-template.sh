@@ -12,6 +12,9 @@ if aws ecr describe-repository-creation-templates \
   --output text | grep -q .; then
   echo "Template exists."
 else
-  echo "No matching template found. Creating..."
-  "$SCRIPT_DIR/create-ecr-repo-creation-template.sh"
+envsubst < "$SCRIPT_DIR/../ecr-repo-creation-template.template.json" \
+  > "$SCRIPT_DIR/../ecr-repo-creation-template.json"
+
+aws ecr create-repository-creation-template \
+  --cli-input-json "file://$SCRIPT_DIR/../ecr-repo-creation-template.json"
 fi

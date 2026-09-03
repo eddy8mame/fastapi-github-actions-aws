@@ -10,5 +10,5 @@ set +a
 
 "$SCRIPT_DIR/check-aws-auth.sh"
 source "$SCRIPT_DIR/create-bootstrap-role-permissions.sh"
-"$SCRIPT_DIR/create-ecr-repo-template.sh"
+"$SCRIPT_DIR/create-ecr-repo-creation-template.sh"
 "$SCRIPT_DIR/create-oidc-role-permissions.sh"
