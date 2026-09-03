@@ -1,0 +1,6 @@
+{
+  "prefix": "${ECR_REPO_PREFIX}",
+  "description": "Auto-create ECR repos on first push for NextEra project repos",
+  "appliedFor": ["CREATE_ON_PUSH"],
+  "imageTagMutability": "IMMUTABLE"
+}

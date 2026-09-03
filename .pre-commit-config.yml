@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: check-oidc-role
+        name: Verify OIDC role exists before push
+        entry: .aws/scripts/check-and-bootstrap.sh
+        language: script 
+        stages: [pre-push]
