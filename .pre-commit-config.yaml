@@ -6,4 +6,6 @@ repos:
         entry: aws/scripts/check-and-bootstrap.sh
         language: script 
         pass_filenames: false
+        verbose: true
         stages: [pre-push]
+
