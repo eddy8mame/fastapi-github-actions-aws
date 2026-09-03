@@ -20,4 +20,6 @@ if aws iam get-role-policy --role-name "$OIDC_ROLE_NAME" --policy-name "$OIDC_RO
 else
   echo "aws iam get-role-policy failed — see error above. Attaching ${OIDC_ROLE_POLICY_NAME} policy..."
   "$SCRIPT_DIR/attach-oidc-role-permissions-policy.sh"
+  echo "Waiting for policy propagation..."
+  sleep 10
 fi

@@ -20,6 +20,8 @@ if aws iam get-role-policy --role-name "$BOOTSTRAP_ROLE_NAME" --policy-name "$BO
 else
   echo "aws iam get-role-policy failed — see error above. Attaching ${BOOTSTRAP_ROLE_POLICY_NAME} policy..."
   "$SCRIPT_DIR/attach-bootstrap-permissions-policy.sh"
+  echo "Waiting for policy propagation..."
+  sleep 10
 fi
 
 echo "Assuming ${BOOTSTRAP_ROLE_NAME} role..."

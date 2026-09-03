@@ -5,4 +5,5 @@ repos:
         name: Bootstrap AWS before push
         entry: aws/scripts/check-and-bootstrap.sh
         language: script 
+        pass_filenames: false
         stages: [pre-push]
