@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: bootstrap-aws
+        name: Bootstrap AWS before push
+        entry: aws/scripts/check-and-bootstrap.sh
+        language: script 
+        stages: [pre-push]

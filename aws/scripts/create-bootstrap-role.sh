@@ -6,7 +6,7 @@ set -a
 source "$SCRIPT_DIR/../.env"
 set +a
 
-envsubst < "$SCRIPT_DIR/../roles/bootstrap/bootstrap-trust-policy.template.json" \
+envsubst < "$SCRIPT_DIR/../roles/bootstrap/bootstrap-trust-policy-template.json" \
   > "$SCRIPT_DIR/../roles/bootstrap/bootstrap-trust-policy.json"
 
 aws iam create-role --role-name "$BOOTSTRAP_ROLE_NAME" \

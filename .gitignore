@@ -1,5 +1,6 @@
 # Python-generated files
 __pycache__/
+.pytest_cache/
 *.py[oc]
 build/
 dist/
@@ -8,7 +9,8 @@ wheels/
 
 .ruff_cache/
 .env
-.pytest_cache/
+aws/**/*.json
+!aws/**/*.template.json
 
 # Virtual environments
 .venv
