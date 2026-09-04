@@ -31,12 +31,17 @@ jobs:
         id: ecr-login
         uses: aws-actions/amazon-ecr-login@v2
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Build and push image
-        env:
-          AWS_ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }}
-        run: |
-          docker build -t $AWS_ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $AWS_ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Write image tag to SSM
         run: |
