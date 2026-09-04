@@ -41,7 +41,7 @@ jobs:
       - name: Write image tag to SSM
         run: |
           aws ssm put-parameter \
-            --name "/nextera/${{ env.REPO_NAME }}/image-tag" \
+            --name "/fastapi-github-actions-aws/image-tag" \
             --value "$IMAGE_TAG" \
             --type String \
             --overwrite
